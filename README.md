@@ -85,16 +85,31 @@ logic — the refactoring I would apply to the original given the chance.
 
 ## Run it
 
-Requires JDK 21+ and Maven.
+### IntelliJ IDEA (recommended)
+
+Open the project folder — IntelliJ imports the Maven project automatically. When prompted,
+select any **JDK 21+** as the project SDK (or download one via
+*Project Structure → SDKs → Add SDK → Download JDK*). Three shared run configurations are
+included and appear in the run configuration dropdown:
+
+| Configuration | What it does |
+|---|---|
+| **Dashboard (javafx:run)** | Builds and launches the app via the JavaFX Maven plugin |
+| **Dashboard (direct)** | Runs the `Launcher` class straight from the IDE (fastest iteration) |
+| **Package fat JAR** | Builds the self-contained `target/scan-log-dashboard-1.0.0.jar` |
+
+### Command line
+
+Requires JDK 21+. The Maven wrapper is included, so no Maven install is needed:
 
 ```bash
-mvn javafx:run
+./mvnw javafx:run
 ```
 
-Or build a self-contained fat jar:
+Or build and run the self-contained fat jar:
 
 ```bash
-mvn package
+./mvnw package
 java -jar target/scan-log-dashboard-1.0.0.jar
 ```
 
