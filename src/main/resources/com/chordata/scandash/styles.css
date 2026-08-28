@@ -1,0 +1,427 @@
+/* ============================================================
+   Scan Log Dashboard — stylesheet
+   Palette: warm paper, deep forest green, lime accent.
+   ============================================================ */
+
+.root {
+    /* palette */
+    -paper: #F6F4EC;
+    -surface: #FDFCF7;
+    -line: #E4E1D2;
+    -ink: #1C2B1F;
+    -muted: #57685B;
+    -forest: #1D3B2A;
+    -forest-soft: #2A4D38;
+    -sage: #4D7C5F;
+    -lime: #84CC16;
+    -lime-dark: #65A30D;
+
+    /* status tints */
+    -good-bg: #EDF5E1;
+    -good-accent: #6DA815;
+    -warn-bg: #FAF0D8;
+    -warn-accent: #D9A21B;
+    -low-bg: #F8E9E3;
+    -low-accent: #C4553B;
+
+    -fx-background-color: -paper;
+    -fx-font-family: "Segoe UI", "Inter", sans-serif;
+    -fx-font-size: 13px;
+    -fx-text-fill: -ink;
+    -fx-focus-color: -lime;
+    -fx-faint-focus-color: #84CC1633;
+    -fx-accent: -lime;
+}
+
+.app-root {
+    -fx-background-color: -paper;
+}
+
+/* ------------------------------------------------------------
+   Header + toolbar
+   ------------------------------------------------------------ */
+
+.app-header {
+    -fx-background-color: -forest;
+}
+
+.app-logo {
+    -fx-text-fill: -lime;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Consolas", monospace;
+}
+
+.app-title {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.app-subtitle {
+    -fx-text-fill: #A7C0AE;
+    -fx-font-size: 12px;
+}
+
+.app-status {
+    -fx-text-fill: -lime;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.toolbar {
+    -fx-background-color: -surface;
+    -fx-border-color: transparent transparent -line transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.toolbar .label {
+    -fx-text-fill: -muted;
+}
+
+.progress-label {
+    -fx-text-fill: -sage;
+    -fx-font-size: 12px;
+}
+
+/* ------------------------------------------------------------
+   Buttons & toggles
+   ------------------------------------------------------------ */
+
+.button {
+    -fx-background-color: -surface;
+    -fx-background-radius: 8;
+    -fx-border-color: -line;
+    -fx-border-radius: 8;
+    -fx-text-fill: -ink;
+    -fx-padding: 5 12 5 12;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: derive(-surface, -4%);
+    -fx-border-color: -sage;
+}
+
+.button:disabled {
+    -fx-opacity: 0.5;
+}
+
+.btn-primary {
+    -fx-background-color: -lime;
+    -fx-border-color: -lime-dark;
+    -fx-text-fill: -forest;
+    -fx-font-weight: bold;
+}
+
+.btn-primary:hover {
+    -fx-background-color: derive(-lime, 12%);
+}
+
+.btn-nav {
+    -fx-padding: 5 9 5 9;
+    -fx-font-weight: bold;
+    -fx-text-fill: -sage;
+}
+
+.toggle-button {
+    -fx-background-color: -surface;
+    -fx-background-radius: 8;
+    -fx-border-color: -line;
+    -fx-border-radius: 8;
+    -fx-text-fill: -muted;
+    -fx-padding: 5 10 5 10;
+    -fx-cursor: hand;
+}
+
+.toggle-button:hover {
+    -fx-border-color: -sage;
+}
+
+.toggle-button:selected {
+    -fx-background-color: -forest;
+    -fx-border-color: -forest;
+    -fx-text-fill: white;
+}
+
+.check-box {
+    -fx-text-fill: -ink;
+}
+
+.check-box .box {
+    -fx-background-color: -surface;
+    -fx-background-radius: 4;
+    -fx-border-color: -line;
+    -fx-border-radius: 4;
+}
+
+.check-box:selected .box {
+    -fx-background-color: -lime;
+    -fx-border-color: -lime-dark;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: -forest;
+}
+
+/* ------------------------------------------------------------
+   Inputs
+   ------------------------------------------------------------ */
+
+.text-field,
+.date-picker > .text-field,
+.combo-box .list-cell {
+    -fx-text-fill: -ink;
+}
+
+.text-field,
+.combo-box-base,
+.date-picker {
+    -fx-background-color: -surface;
+    -fx-background-radius: 8;
+    -fx-border-color: -line;
+    -fx-border-radius: 8;
+}
+
+.text-field:focused,
+.combo-box-base:focused,
+.date-picker:focused {
+    -fx-border-color: -lime-dark;
+}
+
+/* The combo button cell must not inherit selected-cell styling */
+.combo-box > .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -ink;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: -surface;
+    -fx-border-color: -line;
+}
+
+.combo-box-popup .list-cell {
+    -fx-background-color: -surface;
+    -fx-text-fill: -ink;
+}
+
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: -good-bg;
+}
+
+.slider .track {
+    -fx-background-color: -line;
+}
+
+.slider .thumb {
+    -fx-background-color: -sage;
+}
+
+.progress-bar > .track {
+    -fx-background-color: -line;
+    -fx-background-radius: 6;
+}
+
+.progress-bar > .bar {
+    -fx-background-color: -lime;
+    -fx-background-radius: 6;
+}
+
+.progress-indicator {
+    -fx-progress-color: -lime-dark;
+}
+
+/* ------------------------------------------------------------
+   Layout containers
+   ------------------------------------------------------------ */
+
+.sidebar {
+    -fx-background-color: -paper;
+}
+
+.card {
+    -fx-background-color: -surface;
+    -fx-background-radius: 12;
+    -fx-border-color: -line;
+    -fx-border-radius: 12;
+}
+
+.panel-title {
+    -fx-text-fill: -forest;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.dim {
+    -fx-text-fill: -muted;
+    -fx-font-size: 12px;
+}
+
+.content-split,
+.split-pane {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.split-pane > .split-pane-divider {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 6 0;
+}
+
+/* ------------------------------------------------------------
+   Lists
+   ------------------------------------------------------------ */
+
+.list-view {
+    -fx-background-color: -surface;
+    -fx-background-radius: 8;
+    -fx-border-color: -line;
+    -fx-border-radius: 8;
+    -fx-padding: 2;
+}
+
+.list-cell {
+    -fx-background-color: -surface;
+    -fx-text-fill: -ink;
+    -fx-padding: 6 8 6 8;
+    -fx-background-radius: 6;
+}
+
+.list-cell:empty {
+    -fx-background-color: transparent;
+}
+
+.site-list .list-cell:hover {
+    -fx-background-color: -good-bg;
+}
+
+.list-cell:selected {
+    -fx-background-color: -forest;
+    -fx-text-fill: white;
+}
+
+.list-cell:selected .perf-name,
+.list-cell:selected .perf-detail {
+    -fx-text-fill: white;
+}
+
+.list-cell:selected .check-box {
+    -fx-text-fill: white;
+}
+
+/* Performance rows: status accent strip + tint by scan rate */
+
+.perf-name {
+    -fx-font-weight: bold;
+    -fx-text-fill: -ink;
+}
+
+.perf-detail {
+    -fx-text-fill: -muted;
+    -fx-font-size: 12px;
+}
+
+.badge-order,
+.badge-scan {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 3 8 3 8;
+    -fx-background-radius: 10;
+    -fx-alignment: center;
+}
+
+.badge-order {
+    -fx-background-color: -forest;
+    -fx-text-fill: white;
+}
+
+.badge-scan {
+    -fx-background-color: -lime;
+    -fx-text-fill: -forest;
+}
+
+.status-good {
+    -fx-background-color: -good-bg;
+    -fx-border-color: transparent transparent transparent -good-accent;
+    -fx-border-width: 0 0 0 3;
+}
+
+.status-warn {
+    -fx-background-color: -warn-bg;
+    -fx-border-color: transparent transparent transparent -warn-accent;
+    -fx-border-width: 0 0 0 3;
+}
+
+.status-low {
+    -fx-background-color: -low-bg;
+    -fx-border-color: transparent transparent transparent -low-accent;
+    -fx-border-width: 0 0 0 3;
+}
+
+.status-good:selected,
+.status-warn:selected,
+.status-low:selected {
+    -fx-background-color: -forest;
+}
+
+/* ------------------------------------------------------------
+   Chart
+   ------------------------------------------------------------ */
+
+.chart {
+    -fx-padding: 4;
+}
+
+.chart-title {
+    -fx-text-fill: -forest;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.chart-subtitle {
+    -fx-text-fill: -muted;
+    -fx-font-size: 11px;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.chart-vertical-grid-lines,
+.chart-horizontal-grid-lines {
+    -fx-stroke: -line;
+}
+
+.axis {
+    -fx-tick-label-fill: -muted;
+}
+
+.axis-label {
+    -fx-text-fill: -muted;
+}
+
+.default-color0.chart-bar {
+    -fx-bar-fill: -lime;
+}
+
+/* ------------------------------------------------------------
+   Scrollbars
+   ------------------------------------------------------------ */
+
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #C9C5B2;
+    -fx-background-radius: 6;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: -sage;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+}

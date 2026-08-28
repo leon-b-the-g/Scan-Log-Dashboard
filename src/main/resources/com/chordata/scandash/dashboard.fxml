@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane styleClass="app-root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.chordata.scandash.controller.DashboardController">
+
+    <top>
+        <VBox>
+            <!-- Brand header -->
+            <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="app-header">
+                <padding>
+                    <Insets bottom="14.0" left="20.0" right="20.0" top="14.0"/>
+                </padding>
+                <Label styleClass="app-logo" text="◤"/>
+                <VBox spacing="1.0">
+                    <Label styleClass="app-title" text="Scan Log Dashboard"/>
+                    <Label styleClass="app-subtitle" text="Multi-site meal order &amp; scan compliance analytics"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="labelTitle" styleClass="app-status" text="Select sites and run an analysis"/>
+            </HBox>
+
+            <!-- Toolbar -->
+            <HBox alignment="CENTER_LEFT" spacing="8.0" styleClass="toolbar">
+                <padding>
+                    <Insets bottom="10.0" left="20.0" right="20.0" top="10.0"/>
+                </padding>
+                <Button fx:id="buttonMonthBack" styleClass="btn-nav" text="&#171;"/>
+                <Button fx:id="buttonWeekBack" styleClass="btn-nav" text="&#8249;"/>
+                <Label text="From"/>
+                <DatePicker fx:id="datePickerFrom" prefWidth="130.0"/>
+                <Label text="To"/>
+                <DatePicker fx:id="datePickerTo" prefWidth="130.0"/>
+                <Button fx:id="buttonWeekForward" styleClass="btn-nav" text="&#8250;"/>
+                <Button fx:id="buttonMonthForward" styleClass="btn-nav" text="&#187;"/>
+                <Separator orientation="VERTICAL"/>
+                <Button fx:id="buttonAnalyze" styleClass="btn-primary" text="Analyze"/>
+                <Button fx:id="buttonExport" text="Export XLSX"/>
+                <CheckBox fx:id="checkBoxLiveFetch" text="Live scan-log fetch"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <ProgressIndicator fx:id="progressSpinner" maxHeight="18.0" maxWidth="18.0" visible="false"/>
+                <ProgressBar fx:id="progressBar" prefWidth="160.0" progress="0.0" visible="false"/>
+                <Label fx:id="labelProgress" styleClass="progress-label" text="" visible="false"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <left>
+        <!-- Site selection sidebar -->
+        <VBox spacing="8.0" styleClass="sidebar" prefWidth="260.0">
+            <padding>
+                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0"/>
+            </padding>
+            <Label styleClass="panel-title" text="Sites"/>
+            <TextField fx:id="textFieldSchoolSearch" promptText="Search sites..."/>
+            <HBox spacing="8.0">
+                <Button fx:id="buttonSelectAll" maxWidth="Infinity" text="Select all" HBox.hgrow="ALWAYS"/>
+                <Button fx:id="buttonSelectNone" maxWidth="Infinity" text="Select none" HBox.hgrow="ALWAYS"/>
+            </HBox>
+            <ListView fx:id="listViewSchools" styleClass="site-list" VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </left>
+
+    <center>
+        <SplitPane dividerPositions="0.44, 0.72" orientation="VERTICAL" styleClass="content-split">
+            <padding>
+                <Insets bottom="12.0" left="4.0" right="12.0" top="12.0"/>
+            </padding>
+
+            <!-- Performance panels -->
+            <HBox spacing="12.0" minHeight="140.0">
+                <VBox spacing="6.0" styleClass="card" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefWidth="100.0">
+                    <padding>
+                        <Insets bottom="10.0" left="12.0" right="12.0" top="10.0"/>
+                    </padding>
+                    <HBox alignment="CENTER_LEFT" spacing="8.0">
+                        <Label styleClass="panel-title" text="Site performance"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <ComboBox fx:id="comboSchoolSortBy" prefWidth="118.0"/>
+                        <ToggleButton fx:id="toggleSchoolSortDirection" text="Descending"/>
+                        <Label styleClass="dim" text="Show"/>
+                        <Slider fx:id="sliderDisplayLimit" blockIncrement="5.0" max="100.0" min="5.0"
+                                prefWidth="110.0" value="100.0"/>
+                        <Label fx:id="labelDisplayLimit" minWidth="28.0" styleClass="dim" text="All"/>
+                    </HBox>
+                    <ListView fx:id="listViewSchoolPerformance" VBox.vgrow="ALWAYS"/>
+                </VBox>
+
+                <VBox spacing="6.0" styleClass="card" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefWidth="100.0">
+                    <padding>
+                        <Insets bottom="10.0" left="12.0" right="12.0" top="10.0"/>
+                    </padding>
+                    <HBox alignment="CENTER_LEFT" spacing="8.0">
+                        <Label styleClass="panel-title" text="Day performance"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <ComboBox fx:id="comboDaySortBy" prefWidth="118.0"/>
+                        <ToggleButton fx:id="toggleDaySortDirection" text="Descending"/>
+                    </HBox>
+                    <ListView fx:id="listViewDayPerformance" VBox.vgrow="ALWAYS"/>
+                </VBox>
+            </HBox>
+
+            <!-- Drill-down -->
+            <VBox spacing="6.0" styleClass="card" minHeight="100.0">
+                <padding>
+                    <Insets bottom="10.0" left="12.0" right="12.0" top="10.0"/>
+                </padding>
+                <Label fx:id="labelBreakdownTitle" styleClass="panel-title"
+                       text="Drill-down — select a site or a day above"/>
+                <ListView fx:id="listViewBreakdown" VBox.vgrow="ALWAYS"/>
+            </VBox>
+
+            <!-- Weekday chart -->
+            <VBox spacing="6.0" styleClass="card" minHeight="160.0">
+                <padding>
+                    <Insets bottom="10.0" left="12.0" right="12.0" top="10.0"/>
+                </padding>
+                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                    <Label styleClass="panel-title" text="Weekday aggregation"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <ToggleButton fx:id="toggleChartScans" text="Scans">
+                        <toggleGroup>
+                            <ToggleGroup fx:id="chartToggleGroup"/>
+                        </toggleGroup>
+                    </ToggleButton>
+                    <ToggleButton fx:id="toggleChartOrders" text="Orders" toggleGroup="$chartToggleGroup"/>
+                    <ToggleButton fx:id="toggleChartScanRate" text="Scan rate %" toggleGroup="$chartToggleGroup"/>
+                    <ToggleButton fx:id="toggleChartOrderRate" text="Order rate %" toggleGroup="$chartToggleGroup"/>
+                </HBox>
+                <VBox fx:id="chartContainer" VBox.vgrow="ALWAYS"/>
+            </VBox>
+        </SplitPane>
+    </center>
+</BorderPane>
