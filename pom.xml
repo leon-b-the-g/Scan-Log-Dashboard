@@ -38,7 +38,13 @@
             <artifactId>poi-ooxml</artifactId>
             <version>${poi.version}</version>
         </dependency>
-        <!-- POI logs via log4j-api; provide the implementation to keep the console clean -->
+        <!-- POI logs via log4j-api; provide a matching implementation to keep the console clean.
+             The api version must match core — POI's transitive log4j-api is older. -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.23.1</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
