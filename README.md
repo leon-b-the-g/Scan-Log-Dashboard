@@ -1,5 +1,7 @@
 # Scan Log Dashboard
 
+[![build](https://github.com/leon-b-the-g/Scan-Log-Dashboard/actions/workflows/build.yml/badge.svg)](https://github.com/leon-b-the-g/Scan-Log-Dashboard/actions/workflows/build.yml)
+
 A JavaFX analytics dashboard for a school-catering operation: it aggregates **meal orders** and
 **checkout scans** across dozens of sites and turns them into comparable performance metrics,
 drill-downs, weekday patterns and Excel reports.
